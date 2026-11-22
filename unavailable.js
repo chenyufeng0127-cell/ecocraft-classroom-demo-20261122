@@ -1,0 +1,2 @@
+function setUnavailable(element,off,reason){element.removeAttribute('disabled');element.setAttribute('aria-disabled',String(Boolean(off)));element.dataset.tip=reason;}
+document.addEventListener('click',function(e){const el=e.target.closest('[aria-disabled="true"]');if(!el)return;e.preventDefault();e.stopImmediatePropagation();const t=document.querySelector('.toast');if(t){(document.querySelector('dialog[open]')||document.body).append(t);t.textContent=el.dataset.tip||'请先完成上一项条件。';t.classList.add('visible');setTimeout(()=>t.classList.remove('visible'),4000);}},true);

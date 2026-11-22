@@ -1,0 +1,277 @@
+/* Use the existing shop tokens, texture, dialogs and navigation. */
+.bottom-nav.two-entry-nav {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.reuse-page {
+  font-family: "PingFang TC", "Noto Sans CJK TC", "Microsoft JhengHei", sans-serif;
+}
+
+.reuse-intro, .reuse-list {
+  max-width: 1380px;
+  margin-inline: auto;
+  padding-inline: 40px;
+}
+
+.reuse-intro {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(290px, .72fr);
+  gap: clamp(38px, 8vw, 112px);
+  align-items: center;
+  padding-block: 58px 44px;
+}
+
+.reuse-kicker {
+  margin: 0 0 12px;
+  color: var(--sage);
+  font-size: .9375rem;
+}
+
+.reuse-intro h1 {
+  margin: 0;
+  font-size: clamp(2.45rem, 5vw, 4.45rem);
+  font-weight: 550;
+  line-height: 1.16;
+  letter-spacing: .02em;
+}
+
+.reuse-lead {
+  margin: 18px 0 26px;
+  color: var(--muted);
+  font-size: clamp(1rem, 1.9vw, 1.22rem);
+}
+
+.reuse-steps {
+  padding-inline-start: 28px;
+  border-inline-start: 2px solid var(--sage);
+}
+
+.reuse-steps h2 {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 550;
+}
+
+.reuse-steps ol {
+  display: grid;
+  gap: 4px;
+  margin: 12px 0 15px;
+  padding-inline-start: 1.45rem;
+}
+
+.reuse-steps li {
+  padding-inline-start: .32rem;
+}
+
+.reuse-steps li::marker {
+  color: var(--sage);
+}
+
+.reuse-steps p {
+  max-width: 33ch;
+  margin: 0;
+  color: var(--muted);
+  font-size: .9375rem;
+}
+
+.reuse-list {
+  padding-block: 23px 62px;
+  border-top: 1px solid var(--line);
+}
+
+.reuse-section-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px 18px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.reuse-section-heading h2 {
+  margin: 0;
+  font-size: clamp(1.45rem, 2.5vw, 1.88rem);
+  font-weight: 500;
+}
+
+.reuse-section-heading p {
+  margin: 0;
+  font-size: .9375rem;
+  color: var(--sage);
+}
+
+.reuse-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.reuse-card {
+  min-width: 0;
+  overflow: hidden;
+  background: rgba(25, 60, 34, .6);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+}
+
+.reuse-photo {
+  position: relative;
+  flex: none;
+  aspect-ratio: 3 / 2;
+  background: #d1c3ab url("assets/campus-reuse-objects.webp") no-repeat;
+  background-size: 200% 200%;
+}
+
+.reuse-photo-box { background-position: left top; }
+.reuse-photo-files { background-position: right top; }
+.reuse-photo-tray { background-position: left bottom; }
+
+.reuse-photo-jacket {
+  background-image: url("assets/campus-reuse-jacket.webp");
+  background-position: center;
+  background-size: cover;
+}
+
+.reuse-photo-shirt {
+  background-image: url("assets/campus-reuse-shirt.webp");
+  background-position: right 71%;
+  background-size: 290% auto;
+}
+
+.reuse-image-label {
+  position: absolute;
+  inset: 11px auto auto 11px;
+  border-radius: 3px;
+  padding: 2px 8px;
+  font-size: .8125rem;
+  color: var(--deep);
+  background: var(--paper);
+}
+
+.reuse-card-copy {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  padding: 15px 17px 17px;
+}
+
+.reuse-card-copy h3 {
+  margin: 0 0 4px;
+  font-size: 1.16rem;
+  font-weight: 550;
+}
+
+.reuse-card-copy p {
+  margin: 0 0 15px;
+  color: var(--muted);
+  font-size: .9375rem;
+}
+
+.reuse-card-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  margin-top: auto;
+}
+
+.reuse-status {
+  color: var(--sage);
+  font-size: .875rem;
+}
+
+.reuse-card-actions .button {
+  padding: 8px 13px;
+  min-height: 44px;
+  font-size: .9375rem;
+}
+
+.reuse-clothing {
+  margin-top: 30px;
+  padding-top: 25px;
+  border-top: 1px solid var(--line);
+}
+
+.reuse-footer {
+  align-items: center;
+}
+
+.reuse-summary {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 0;
+  border-block: 1px solid #244f2c36;
+}
+
+.reuse-slot-label {
+  display: block;
+  margin: 18px 0 7px;
+  font-weight: 600;
+}
+
+#reuse-slot {
+  font: inherit;
+  width: 100%;
+  min-height: 45px;
+  padding: 7px 10px;
+  border: 1px solid #66856b;
+  border-radius: 4px;
+  color: var(--deep);
+  background: white;
+}
+
+#reuse-slot:focus-visible {
+  outline: 3px solid #3f6842;
+  outline-offset: 2px;
+}
+
+.reuse-pickup {
+  padding: 13px 17px;
+  background: #e4ecdf;
+  border: 1px solid var(--sage);
+  border-radius: 4px;
+}
+
+.reuse-pickup div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  column-gap: 16px;
+}
+
+.reuse-pickup dd {
+  margin: 0;
+  font-weight: 550;
+}
+
+.reuse-inline-link {
+  text-underline-offset: 4px;
+  font-weight: 500;
+}
+
+@media (max-width: 900px) {
+  .reuse-grid { gap: 16px; }
+  .reuse-intro, .reuse-list { padding-inline: 25px; }
+}
+
+@media (max-width: 760px) {
+  .reuse-intro {
+    grid-template-columns: 1fr;
+    padding-block: 35px 27px;
+    gap: 23px;
+  }
+  .reuse-steps { padding-inline-start: 15px; }
+  .reuse-intro, .reuse-list { padding-inline: 20px; }
+  .reuse-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+  .reuse-card-copy { padding: 11px; }
+  .reuse-card-copy h3 { font-size: 1rem; }
+  .reuse-card-copy p { font-size: .875rem; margin-bottom: 11px; }
+  .reuse-card-actions { align-items: stretch; flex-direction: column; gap: 5px; }
+  .reuse-card-actions .button { font-size: .875rem; }
+  .reuse-image-label { inset: 6px auto auto 6px; font-size: .75rem; }
+  .bottom-nav.two-entry-nav a { padding-inline: 2px; }
+}
