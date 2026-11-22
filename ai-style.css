@@ -23,3 +23,33 @@
   .ai-demo-notice { padding: 12px 16px; margin-bottom: 16px; }
   .ai-current-step { margin: 12px 0; }
 }
+
+.demo-entrances {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 20px;
+}
+.demo-entrances a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 12px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  color: var(--paper);
+  text-decoration: none;
+}
+.demo-entrances a[aria-current="location"] {
+  background: var(--sage);
+  border-color: var(--sage);
+  color: var(--deep);
+}
+.demo-entrances a:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.demo-entrances a:focus-visible {
+  outline: 2px solid var(--paper);
+  outline-offset: 2px;
+}
