@@ -11,3 +11,42 @@ img{height:auto}.hero-image img{width:100%;height:auto}.product-tab img{width:10
 @media(max-width:600px){.material-card{display:block}.material-photo img{aspect-ratio:1.4}.material-priority strong{font-size:18px}.material-copy dl{font-size:15px}}
 
 .material-photo>span{font-size:14px;font-weight:500;padding:8px 12px}
+
+.campus-collection-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 28px 20px;
+}
+.campus-collection-grid figure {
+  margin: 0;
+}
+.campus-collection-grid a {
+  display: block;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.campus-collection-grid a:focus-visible {
+  outline: 2px solid var(--paper);
+  outline-offset: 4px;
+}
+.campus-collection-grid img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.campus-collection-grid figcaption {
+  margin-top: 10px;
+  color: var(--paper);
+  font-size: 1rem;
+}
+@media (max-width: 860px) {
+  .campus-collection-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 560px) {
+  .campus-collection-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
