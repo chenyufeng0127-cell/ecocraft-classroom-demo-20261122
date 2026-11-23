@@ -1,29 +1,178 @@
-let current=products[0],view='use',selected=[];
-const $=s=>document.querySelector(s);
-const tabs=$('.product-tabs');
-tabs.innerHTML=products.map(p=>`<button class="product-tab" data-product="${p.id}" aria-pressed="false"><img src="${p.image}" alt="${p.name}的AI概念图，尚未打样"><span>${p.id} · ${p.priority}</span><b>${p.name}</b></button>`).join('');
-function renderStory(){ $('#story-content').innerHTML=view==='use'?`<p>${current.use}</p>`:`<p><b>${current.material}</b>，经检查、整理与制作，成为${current.name}。正式销售须展示本批真实材料与成品记录。</p>`; document.querySelectorAll('[data-view]').forEach(b=>{b.classList.toggle('active',b.dataset.view===view);b.setAttribute('aria-pressed',b.dataset.view===view)});}
-function renderProduct(id){current=products.find(p=>p.id===id)||products[0];for(const [sel,value] of Object.entries({'#product-number':current.id,'#material':current.material,'#product-name':current.name,'#product-short':current.short,'#product-use':current.use,'#product-size':current.size,'#product-status':current.priority+' · 候选模板未启用','#price':current.price,'#price-note':current.priceNote,'#raw-title':current.material,'#raw-text':current.raw,'#after-title':current.name,'#after-text':current.use}))$(sel).textContent=value;
- const img=$('#product-image');img.src=current.image;img.alt=`AI生成概念：${current.name}，尚未打样`;
- $('#material-strip').innerHTML=`<div class="material-strip"><b>${current.material}</b><span>完整物品优先直接重用</span></div>`;
- $('#steps').innerHTML=current.process.map(s=>`<li>${s}</li>`).join('');
- document.querySelectorAll('[data-product]').forEach(b=>{const active=b.dataset.product===current.id;b.classList.toggle('active',active);b.setAttribute('aria-pressed',active)});renderStory();}
-tabs.addEventListener('click',e=>{const b=e.target.closest('[data-product]');if(b)renderProduct(b.dataset.product)});
-document.querySelectorAll('[data-view]').forEach(b=>b.addEventListener('click',()=>{view=b.dataset.view;renderStory()}));
-function toast(text){$('.toast').textContent=text;$('.toast').classList.add('visible');setTimeout(()=>$('.toast').classList.remove('visible'),2600)}
-$('#open-template').addEventListener('click',()=>{$('#template-title').textContent=current.id+' · '+current.name;$('#template-body').innerHTML=`<h3>用途与拟议尺寸</h3><p>${current.use} ${current.size}，尺寸未实测。</p><h3>材料条件</h3><p>${current.raw}</p><h3>新增辅料与工具</h3><p>${current.parts}</p><p>${current.tools}</p><h3>拟议工序</h3><ol>${current.process.map(s=>`<li>${s}</li>`).join('')}</ol><h3>打样检查</h3><p>${current.check}</p><h3>启用条件</h3><p>${current.gate} 所有图均为AI概念，不能据此认定结构已验证。</p>`;$('#template-dialog').showModal()});
-for(const d of document.querySelectorAll('dialog')){d.querySelector('.dialog-close').addEventListener('click',()=>d.close());d.querySelector('.dialog-done')?.addEventListener('click',()=>d.close());}
-function renderList(){$('#count').textContent=selected.length;$('#selection-list').innerHTML=selected.length?selected.map(id=>{const p=products.find(p=>p.id===id);return `<li><span>${p.id} · ${p.name}<br><small>${p.price} · 尚不可购买</small></span><button data-remove="${id}">移除</button></li>`}).join(''):'<li>尚未选择候选产品。</li>';setUnavailable($('#download-list'),!selected.length,'请先选择一款候选产品，再下载本地选择记录。');}
-$('#select-product').addEventListener('click',()=>{if(!selected.includes(current.id)){selected.push(current.id);renderList();toast('已加入本地演示选择单，未提交订单。')}else toast('这款已在选择单中。')});
-$('#open-list').addEventListener('click',()=>{renderList();$('#list-dialog').showModal()});
-$('#selection-list').addEventListener('click',e=>{if(e.target.dataset.remove){selected=selected.filter(id=>id!==e.target.dataset.remove);renderList()}});
-$('#clear-list').addEventListener('click',()=>{selected=[];renderList()});
-$('#download-list').addEventListener('click',()=>{const data={type:'local_demo_selection_not_order',notice:'个人演示选择，不是实付、订单、销量或市场调查结果',products:selected.map(id=>{const p=products.find(p=>p.id===id);return {id,name:p.name,status:'概念未打样',priceStatus:p.price}})};const u=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:'application/json'}));const a=document.createElement('a');a.href=u;a.download='EcoCraft_本地演示选择_非订单.json';a.click();setTimeout(()=>URL.revokeObjectURL(u),1000)});
+const works = [...products, ...campusProducts];
+const findWork = id => works.find(work => work.id === id);
+const isCampus = work => campusProducts.includes(work);
+const workStatus = work => isCampus(work) ? '成品展示 · 模板待實測' : '候選構想 · 模板未啟用';
+const $ = selector => document.querySelector(selector);
+let current = products[0];
+let view = 'use';
+let selected = [];
+
+for (const [group, items] of [['#daily-tabs', products], ['#campus-tabs', campusProducts]]) {
+  $(group).innerHTML = items.map(work => `
+    <button class="product-tab" type="button" data-product="${work.id}" aria-pressed="false">
+      <img src="${work.image}" alt="" loading="lazy" decoding="async">
+      <b>${work.name}</b>
+    </button>`).join('');
+  $(group).addEventListener('click', event => {
+    const button = event.target.closest('[data-product]');
+    if (button) showWork(button.dataset.product);
+  });
+}
+
+function renderStory() {
+  const description = current.story
+    ? current.story + '，製成' + current.name + '。'
+    : current.material + '經檢查、整理與製作，成為' + current.name + '。';
+  $('#story-content').textContent = view === 'use' ? current.use : description;
+  document.querySelectorAll('[data-view]').forEach(button => {
+    const active = button.dataset.view === view;
+    button.classList.toggle('active', active);
+    button.setAttribute('aria-pressed', String(active));
+  });
+}
+
+function renderProduct(id) {
+  current = findWork(id) || products[0];
+  const campus = isCampus(current);
+  const values = {
+    '#product-number': (campus ? '校園系列' : '日常系列') + ' · ' + current.id,
+    '#product-image-label': campus ? '成品展示' : 'AI 概念圖 · 尚未打樣',
+    '#material': current.material,
+    '#product-name': current.name,
+    '#product-short': current.short,
+    '#product-use': current.use,
+    '#product-size': current.size,
+    '#product-status': workStatus(current),
+    '#price': current.price || '',
+    '#price-note': current.priceNote || '',
+    '#material-strip': current.material,
+    '#raw-title': current.material,
+    '#raw-text': current.raw,
+    '#after-title': current.name,
+    '#after-text': current.use,
+  };
+  for (const [selector, value] of Object.entries(values)) $(selector).textContent = value;
+  const image = $('#product-image');
+  image.src = current.image;
+  image.alt = current.name + (campus ? '成品與物料說明' : '的 AI 概念圖');
+  $('#product-details').classList.toggle('campus-details', campus);
+  const seriesLink = $('#product-series-link');
+  seriesLink.href = campus ? '#campus-collection' : '#daily-collection';
+  seriesLink.textContent = '返回' + (campus ? '校園系列' : '日常系列');
+  $('#product-full-image').hidden = !campus;
+  $('#product-full-image').href = current.image;
+  $('#price-block').hidden = campus;
+  $('#steps').innerHTML = current.process.map(step => `<li>${step}</li>`).join('');
+  document.querySelectorAll('[data-product]').forEach(button => {
+    const active = button.dataset.product === current.id;
+    button.classList.toggle('active', active);
+    button.setAttribute('aria-pressed', String(active));
+  });
+  renderStory();
+}
+
+function showWork(id) {
+  view = 'use';
+  renderProduct(id);
+  const details = $('#product-details');
+  details.focus({ preventScroll: true });
+  details.scrollIntoView();
+}
+
+function openWorkFromLink() {
+  const id = location.hash.slice('#product-'.length);
+  if (location.hash.startsWith('#product-') && findWork(id)) showWork(id);
+}
+
+document.querySelectorAll('[data-view]').forEach(button => {
+  button.addEventListener('click', () => {
+    view = button.dataset.view;
+    renderStory();
+  });
+});
+
+let toastTimer;
+function toast(text) {
+  const message = $('.toast');
+  clearTimeout(toastTimer);
+  message.textContent = text;
+  message.classList.add('visible');
+  toastTimer = setTimeout(() => message.classList.remove('visible'), 2600);
+}
+
+$('#open-template').addEventListener('click', () => {
+  $('#template-title').textContent = current.id + ' · ' + current.name;
+  $('#template-label').textContent = isCampus(current) ? '製作模板參考 · 待實測' : '候選製作模板 · 未啟用';
+  $('#template-body').innerHTML = `
+    <h3>用途與參考尺寸</h3><p>${current.use} ${current.size}。製作時按實物核對。</p>
+    <h3>材料條件</h3><p>${current.raw}</p>
+    <h3>輔料與工具</h3><p>${current.parts}</p><p>${current.tools}</p>
+    <h3>製作步驟</h3><ol>${current.process.map(step => `<li>${step}</li>`).join('')}</ol>
+    <h3>完工檢查</h3><p>${current.check}</p>
+    <h3>規格確認</h3><p>${current.gate}</p>`;
+  $('#template-dialog').showModal();
+});
+
+for (const dialog of document.querySelectorAll('dialog')) {
+  dialog.querySelector('.dialog-close').addEventListener('click', () => dialog.close());
+  dialog.querySelector('.dialog-done')?.addEventListener('click', () => dialog.close());
+}
+
+function renderList() {
+  $('#count').textContent = selected.length;
+  $('#selection-list').innerHTML = selected.length ? selected.map(id => {
+    const work = findWork(id);
+    return `<li><span>${id} · ${work.name}<br><small>${workStatus(work)}${work.price ? ' · ' + work.price : ''}</small></span><button data-remove="${id}">移除</button></li>`;
+  }).join('') : '<li>尚未選擇作品。</li>';
+  setUnavailable($('#download-list'), !selected.length, '請先選擇一款作品，再下載本地選擇記錄。');
+}
+
+$('#select-product').addEventListener('click', () => {
+  if (selected.includes(current.id)) {
+    toast('這款已在選擇單中。');
+    return;
+  }
+  selected.push(current.id);
+  renderList();
+  toast('已加入本地演示選擇單。');
+});
+$('#open-list').addEventListener('click', () => {
+  renderList();
+  $('#list-dialog').showModal();
+});
+$('#selection-list').addEventListener('click', event => {
+  const id = event.target.dataset.remove;
+  if (id) {
+    selected = selected.filter(item => item !== id);
+    renderList();
+  }
+});
+$('#clear-list').addEventListener('click', () => {
+  selected = [];
+  renderList();
+});
+$('#download-list').addEventListener('click', () => {
+  const data = {
+    type: 'local_demo_selection_not_order',
+    notice: '个人演示选择，不是实付、订单、销量或市场调查结果',
+    products: selected.map(id => {
+      const work = findWork(id);
+      return { id, name: work.name, status: workStatus(work), priceStatus: work.price || '成品展示' };
+    }),
+  };
+  const url = URL.createObjectURL(new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' }));
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = 'EcoCraft_本地演示选择_非订单.json';
+  link.click();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+});
+
 $('#match-form').addEventListener('submit',e=>{
  e.preventDefault(); const state=$('#condition').value,material=$('#fabric').value; let title,text,ids=[];
  if(state==='intact') {title='B类：优先直接重用';text='旧裤子、旧外套、收纳盒或可继续包装的纸盒，先核清洁、功能与公布清单，优先交换／捐赠；不为二创拆掉仍可原样使用的物品。';}
  else if(state==='unknown') {title='先待核，不匹配制作模板';text='污染须隔离；不把清洁能力不明的物品转给创客。未知材质、尺寸、结构与强度需人工核实，不能自动归C。';}
- else if(material==='storage') {title='破损塑料收纳盒：先待核';text='现有候选没有塑料箱改造模板。先检查材质、锐边与可靠接收去向；接收方确认相应塑料后才可归C，未确认前不开放相应接收。';}
+ else if(material==='storage') {title='破损塑料收纳盒：先待核';text='可參考校園系列的中庭硬筆盒；實際處理前先確認材質、銳邊及工作坊接收條件；接收方确认相应塑料后才可归C，未确认前不开放相应接收。';}
  else if(material==='jacket') {title='旧外套：先确认还能否直接穿';text='若仍清洁完整、功能合格，优先B。若已不宜穿，须核面料、涂层与可用尺寸；不能因为是衣物就自动套用牛仔布或棉T恤模板。无匹配模板或可靠去向先待核。';}
  else if(material==='other') {title='材料信息不足，先核实';text='不能靠照片猜材质或临时编工艺。没有启用模板和可靠去向前，不开放相应接收。';}
  else {ids=material==='denim'?['T01','T02','T04']:material==='cotton'?['T03']:['T01'];title='A类候选材料：尚未批准制作';text=material==='cardboard'?'先看纸板能否继续包装；不能直接用时，才核T01的尺寸与强度，且需配齐布料和辅料。不匹配模板时，只有下游确认接收才归C；未确认则不开收。':'还需量可用尺寸、检查强度、清洁与辅料。以下仅供参考，候选模板目前均未启用，须实物打样与复做通过。';}
@@ -31,5 +180,9 @@ $('#match-form').addEventListener('submit',e=>{
 });
 $('#match-candidates').addEventListener('click',e=>{const id=e.target.dataset.matchProduct;if(id){renderProduct(id);$('#works').scrollIntoView({behavior:'smooth'})}});
 $('#present').addEventListener('click',()=>{const on=document.body.classList.toggle('present');$('#present').setAttribute('aria-pressed',on);$('#present').textContent=on?'退出演示模式':'演示模式';toast(on?'演示模式已开启，可逐款切换讲解。':'已返回完整展厅。')});
-const sections=[...document.querySelectorAll('section[id]')];const links=[...document.querySelectorAll('.progress a')];function updateNav(){let active='materials';for(const s of sections)if(s.getBoundingClientRect().top<innerHeight*.42)active=s.id;if(active==='home'||active==='why')active='materials';for(const a of links){const on=a.hash==='#'+active;a.classList.toggle('active',on);if(on)a.setAttribute('aria-current','location');else a.removeAttribute('aria-current')}}window.addEventListener('scroll',updateNav,{passive:true});
-renderProduct('T01');renderList();updateNav();
+const sections=[...document.querySelectorAll('section[id]')];const links=[...document.querySelectorAll('.progress a')];function updateNav(){let active='materials';for(const s of sections)if(s.getBoundingClientRect().top<innerHeight*.42)active=s.id;if(active==='home')active='materials';for(const a of links){const on=a.hash==='#'+active;a.classList.toggle('active',on);if(on)a.setAttribute('aria-current','location');else a.removeAttribute('aria-current')}}window.addEventListener('scroll',updateNav,{passive:true});
+renderProduct('T01');
+renderList();
+updateNav();
+openWorkFromLink();
+window.addEventListener('hashchange', openWorkFromLink);

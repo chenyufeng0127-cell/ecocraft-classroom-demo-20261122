@@ -6,23 +6,31 @@
 <meta name="description" content="EcoCraft校园二创自营商店演示。浏览四款二创小物，体验商品详情、购物车与模拟下单，或探索旧物分级与AI辅助检查。">
 <link rel="stylesheet" href="shop.css?v=shop-r6">
 <link rel="stylesheet" href="reuse.css">
-<script>const legacySections=['home','why','materials','ai-demo','works','transform','material-match','flow','validate','sources'];function preserveShowroomLink(){if(legacySections.includes(location.hash.slice(1)))location.replace('studio.html'+location.hash);}preserveShowroomLink();addEventListener('hashchange',preserveShowroomLink);</script>
+<link rel="stylesheet" href="collection.css?v=series1">
+<script>const legacySections=['home','materials','ai-demo','works','daily-collection','campus-collection','transform','material-match','flow','validate','sources'];function preserveShowroomLink(){if(legacySections.includes(location.hash.slice(1)))location.replace('studio.html'+location.hash);}preserveShowroomLink();addEventListener('hashchange',preserveShowroomLink);</script>
 </head>
 <body>
 <a class="skip" href="#shop">跳到商品</a>
 <div class="demo-notice">店铺演示｜图片为AI概念，价格及数量供体验，无真实收款。</div>
 <header class="shop-header">
 <a class="brand" href="./" aria-label="EcoCraft商店首页">EcoCraft <span>校园循环商店</span></a>
-<nav class="desktop-nav" aria-label="主导航"><a href="#shop" aria-current="page">二創自營商品</a><a href="reuse.html">校園閒置領取</a><a href="studio.html#materials">旧物与AI</a><a href="studio.html#why">我们的项目</a></nav>
+<nav class="desktop-nav" aria-label="主导航"><a href="#shop" aria-current="page">二創自營商品</a><a href="reuse.html">校園閒置領取</a><a href="studio.html#materials">旧物与AI</a><a href="studio.html#works">二創作品</a></nav>
 <button class="cart-button" data-open-cart aria-label="打开购物车"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 7h14l1 14H4L5 7Z"/><path d="M9 8V5a3 3 0 0 1 6 0v3"/></svg><span>购物车</span><b data-cart-count>0</b></button>
 </header>
 <main>
 <section class="shop-hero">
-<div class="hero-copy"><p class="small-heading">EcoCraft 自营二创系列</p><h1>旧物的新日常。</h1><p class="hero-lead">从不再穿的牛仔裤，<br>到桌上刚好需要的小收纳。</p><p class="hero-description">我们收集、挑选合适的旧料，设计成好用的小物。<br class="desktop-break">先从这四款开始，看看哪款适合你的日常。</p><div class="hero-actions"><a class="button primary" href="#shop">二創自營商品</a><a class="button outline" href="reuse.html">校園閒置領取</a><a class="text-link" href="studio.html#ai-demo">看看旧物如何匹配模板</a></div><p class="hero-note">自营设计 · 材料来源可见 · 校内自取演示</p></div>
-<button class="hero-product" data-detail="T01" aria-label="查看桌面双格收纳盒详情"><img src="assets/shop-T01.webp" alt="AI概念：牛仔布包覆纸板的桌面双格收纳盒" width="1100" height="619" fetchpriority="high"><span class="hero-caption"><span>从旧牛仔布到桌面整理</span><strong>桌面双格收纳盒</strong><span>查看商品详情</span></span><span class="photo-label">AI概念图 · 尚未打样</span></button>
+<div class="hero-copy"><p class="small-heading">EcoCraft 日常系列</p><h1>旧物的新日常。</h1><p class="hero-lead">从不再穿的牛仔裤，<br>到桌上刚好需要的小收纳。</p><p class="hero-description">我们收集、挑选合适的旧料，设计成好用的小物。<br class="desktop-break">滑動右側相片，瀏覽日常系列與校園系列。</p><div class="hero-actions"><a class="button primary" href="#shop">二創自營商品</a><a class="button outline" href="reuse.html">校園閒置領取</a><a class="text-link" href="studio.html#ai-demo">看看旧物如何匹配模板</a></div><p class="hero-note">自营设计 · 材料来源可见 · 校内自取演示</p></div>
+<div class="work-carousel" data-work-carousel="shop" role="region" aria-label="作品照片輪播">
+ <div class="work-carousel-track" tabindex="0" aria-label="左右捲動觀看作品"></div>
+ <div class="work-carousel-controls">
+  <button type="button" data-carousel-back aria-label="上一款作品" disabled>←</button>
+  <span class="work-carousel-position" aria-live="polite">1 / 12</span>
+  <button type="button" data-carousel-next aria-label="下一款作品">→</button>
+ </div>
+</div>
 </section>
 <section class="catalog-section" id="shop" aria-labelledby="catalog-title">
-<div class="catalog-heading"><div><p class="small-heading">按用途选一件</p><h2 id="catalog-title">把小物，收得刚刚好。</h2></div><span id="results-count" aria-live="polite">4款商品</span></div>
+<div class="catalog-heading"><div><p class="small-heading">日常系列 · 模擬商店</p><h2 id="catalog-title">把小物，收得刚刚好。</h2></div><span id="results-count" aria-live="polite">4款商品</span></div>
 <p class="catalog-note">本页模拟购物，不会付款或提交真实订单。四款均为待打样概念；演示价格不作正式报价或盈利依据。 <a class="text-link" href="studio.html#campus-collection">查看校園系列二創成品</a></p>
 <div class="shop-tools"><div class="categories" role="group" aria-label="商品类别"><button data-category="all" aria-pressed="true">全部商品</button><button data-category="desktop" aria-pressed="false">桌面收纳</button><button data-category="carry" aria-pressed="false">随身收纳</button></div><form id="search-form" role="search"><label class="sr-only" for="search">搜索商品或材料</label><input id="search" type="search" placeholder="搜商品或材料" autocomplete="off"><button type="submit" aria-label="搜索商品"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="10" cy="10" r="6"/><path d="m15 15 5 5"/></svg></button></form></div>
 <div id="catalog-grid" class="catalog-grid"></div>
@@ -41,5 +49,5 @@
 <dialog id="checkout-dialog" class="checkout-dialog" aria-labelledby="checkout-title"><button class="dialog-close" data-close="checkout-dialog" aria-label="关闭模拟结算">×</button><p class="small-heading">模拟结算</p><h2 id="checkout-title">确认这次选择</h2><form id="checkout-form"><ul id="checkout-items" class="order-items"></ul><details class="pickup-details"><summary>校内自取（演示）</summary><p>无额外费用，不指定真实地点或日期。</p></details><div class="total-row"><span>演示合计</span><strong id="checkout-total"></strong></div><label class="demo-accept"><input id="demo-accept" type="checkbox"><span>我知道这是模拟交易，不会扣款或提交真实订单。</span></label><div class="checkout-actions"><button class="plain-button" type="button" id="back-cart">返回购物车</button><button class="button primary" type="submit" id="place-order" aria-disabled="true">生成模拟订单</button></div></form></dialog>
 <dialog id="receipt-dialog" class="receipt-dialog" aria-labelledby="receipt-title"><button class="dialog-close" data-close="receipt-dialog" aria-label="关闭模拟订单">×</button><div class="receipt-check" aria-hidden="true">✓</div><p class="small-heading">模拟结算 · 购物流程体验完成</p><h2 id="receipt-title">模拟订单已生成</h2><p class="receipt-state">未付款 · 未提交 · 不会通知任何人</p><p class="receipt-number">演示编号 <span id="receipt-id"></span></p><ul id="receipt-items" class="order-items"></ul><div class="total-row"><span>演示合计</span><strong id="receipt-total"></strong></div><p class="local-note">没有真实库存、付款或发货。关闭后可以继续体验。</p><div class="receipt-actions"><button class="button primary" data-close="receipt-dialog">继续逛商品</button><a class="text-link" href="studio.html#ai-demo">探索旧物与AI</a></div></dialog>
 <div id="shop-toast" class="shop-toast" role="status" aria-live="polite"></div>
-<script src="products.js?v=shop-r6"></script><script src="shop-core.js?v=shop-r6"></script><script src="shop.js?v=shop-r6"></script>
+<script src="products.js?v=shop-r6"></script><script src="campus-products.js?v=series1"></script><script src="work-carousel.js?v=series1"></script><script src="shop-core.js?v=shop-r6"></script><script src="shop.js?v=series1"></script>
 </body></html>

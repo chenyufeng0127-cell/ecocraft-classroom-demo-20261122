@@ -19,7 +19,7 @@
  function add(id,q=1){attempt(()=>{cart=S.add(cart,id,q);save();toast('已加入演示购物车。');});}
  function detail(id){
   current=product(id);if(!current)return;
-  const p=current;$('#detail-title').textContent=p.name;$('#detail-img').src=p.image;$('#detail-img').alt=p.name+'的AI概念图，尚未打样';$('#detail-material').textContent=p.material;$('#detail-use').textContent=p.use;$('#detail-price').textContent=money(p.priceCents);$('#detail-size').textContent=p.size+'（拟议）';$('#detail-raw').textContent=p.raw;$('#detail-care').textContent=p.check;$('#detail-qty').value=1;$('#detail-template').href='studio.html#works';
+  const p=current;$('#detail-title').textContent=p.name;$('#detail-img').src=p.image;$('#detail-img').alt=p.name+'的AI概念图，尚未打样';$('#detail-material').textContent=p.material;$('#detail-use').textContent=p.use;$('#detail-price').textContent=money(p.priceCents);$('#detail-size').textContent=p.size+'（拟议）';$('#detail-raw').textContent=p.raw;$('#detail-care').textContent=p.check;$('#detail-qty').value=1;$('#detail-template').href='studio.html#product-'+p.id;
   openDialog('product-dialog');
  }
  function renderCart(){
