@@ -75,6 +75,13 @@
   font-size: 1.125rem;
 }
 
+.work-carousel-controls [data-carousel-toggle] {
+  width: auto;
+  padding: 0 10px;
+  margin-inline-end: auto;
+  font-size: .875rem;
+}
+
 .work-carousel-controls button:disabled {
   opacity: .45;
 }
