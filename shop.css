@@ -23,3 +23,26 @@
   .detail-price { margin-top: 8px; }
   .qty-label { margin: 10px 0; }
 }
+
+.shop-brand-links {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0 16px;
+}
+
+.shop-showroom-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--paper);
+  font-size: .875rem;
+  white-space: nowrap;
+  text-underline-offset: 4px;
+}
+
+@media (max-width: 760px) {
+  .shop-brand-links {
+    gap: 0 12px;
+  }
+}
