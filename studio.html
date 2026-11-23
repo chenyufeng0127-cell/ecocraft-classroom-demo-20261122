@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="zh-Hans">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#244f2c"><title>EcoCraft · 闲置的下一种可能</title><link rel="stylesheet" href="style.css?v=campus-collection"><link rel="stylesheet" href="ai-style.css?v=material-cases1"><link rel="stylesheet" href="collection.css?v=series1"></head>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#244f2c"><title>EcoCraft · 闲置的下一种可能</title><link rel="stylesheet" href="style.css?v=campus-collection"><link rel="stylesheet" href="ai-style.css?v=material-cases2"><link rel="stylesheet" href="collection.css?v=series1"></head>
 <body>
 <a class="skip" href="#works">跳到作品</a>
 <header class="top"><a class="brand" href="#home">EcoCraft<span>校园循环设计</span></a><div class="top-actions"><a class="text-button" href="./">逛自营商店</a><span class="tag">二創作品展廳</span><button id="present" class="text-button" aria-pressed="false">演示模式</button></div></header>
@@ -39,7 +39,7 @@
   <li><strong>無法直接重用或二創</strong><p>例如大面積撕裂的外套。核對物料與接收條件後，安排原料回收。</p><a href="#materials">看收件判斷</a></li>
  </ul>
  <div class="ai-demo-notice"><strong>预置结果 · 流程演示</strong><span>没有实时AI识别、图片上传或真实生产审批。情景图、破损标框及示例资料均为预置。</span></div>
- <div class="ai-scene-buttons" role="group" aria-label="选择AI演示情形"><button data-ai-scene="jeans">破膝旧牛仔裤</button><button data-ai-scene="jacket">完好旧外套</button><button data-ai-scene="textile">重度破損舊外套（C 級）</button><button data-ai-scene="plastic">粗粒硬塑膠碎片</button><button id="ai-reset" class="ai-reset">重置本例</button></div>
+ <div class="ai-scene-buttons" role="group" aria-label="选择AI演示情形"><button data-ai-scene="jeans">破膝旧牛仔裤</button><button data-ai-scene="jacket">完好旧外套</button><button data-ai-scene="textile">重度破損舊外套（C 級）</button><button id="ai-reset" class="ai-reset">重置本例</button></div>
  <div class="ai-current-step"><p class="ai-step-state" id="ai-step-state" aria-live="polite"></p><button id="ai-observe" class="button primary">查看预置观察</button></div>
  <div class="ai-inspection-grid">
   <div class="ai-photo-panel"><div class="ai-photo-title"><h3 id="ai-scene-title"></h3><span>AI情景图</span></div><div class="ai-photo-wrap"><img id="ai-photo" alt="示例衣物"><div id="ai-hole" class="ai-hole" hidden><span>疑似破损 · 预置标框</span></div></div><div class="ai-photo-controls" id="ai-photo-controls"><label><input type="checkbox" id="ai-mark" aria-disabled="true">显示预置破损标注</label></div><div id="ai-observation" class="ai-observation" hidden><h4>辅助观察（预置）</h4><p id="ai-observation-text"></p><p id="ai-observation-source" class="small"></p></div></div>
@@ -55,7 +55,6 @@
    <h3 id="ai-material-route-heading"></h3>
    <p id="ai-material-route-detail"></p>
    <button type="button" class="button primary" id="ai-show-destination" disabled>查看物料去向</button>
-   <a href="#product-C02" id="ai-material-product" hidden>看中庭硬筆盒製作參考</a>
   </div>
  </div>
  <details class="ai-disclosure ai-flow-guide" id="ai-flow-guide"><summary>查看演示步骤</summary><ol class="ai-stages"><li>选衣物</li><li>看预置观察</li><li>补充资料</li><li>匹配条件</li><li>人工确认</li></ol></details>
@@ -92,5 +91,5 @@
 <dialog id="template-dialog" aria-labelledby="template-title"><button class="dialog-close" aria-label="关闭制作模板">×</button><p class="eyebrow" id="template-label">製作模板參考</p><h2 id="template-title"></h2><div id="template-body"></div><button class="button primary dialog-done">看完了</button></dialog>
 <dialog id="list-dialog" aria-labelledby="list-title"><button class="dialog-close" aria-label="关闭选择单">×</button><p class="eyebrow">仅保存在本页内</p><h2 id="list-title">演示选择单</h2><p>这是展示流程，不会生成订单、收款或向团队提交资料。关闭或刷新后清空。</p><ul id="selection-list"></ul><div class="actions"><button id="download-list" class="button primary">下载本地选择记录</button><button id="clear-list" class="button outline">清空选择</button></div><p class="note">下一步真实销售前：实物与复做通过、核价、确认材料与人手、公布交付与售后条件。</p></dialog>
 <div class="toast" role="status" aria-live="polite"></div>
-<script src="unavailable.js?v=shop-r6"></script><script src="products.js?v=shop-r6"></script><script src="campus-products.js?v=series1"></script><script src="work-carousel.js?v=series1"></script><script src="app.js?v=series1"></script><script src="ai-core.js?v=shop-r6"></script><script src="ai-ui.js?v=material-cases1"></script>
+<script src="unavailable.js?v=shop-r6"></script><script src="products.js?v=shop-r6"></script><script src="campus-products.js?v=series1"></script><script src="work-carousel.js?v=series1"></script><script src="app.js?v=series1"></script><script src="ai-core.js?v=shop-r6"></script><script src="ai-ui.js?v=material-cases2"></script>
 </body></html>

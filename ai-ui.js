@@ -14,19 +14,6 @@
     title: 'C 級去向：紡織原料回收',
     text: '確認回收方接收這類織物及其狀態後，按對方要求交收。'
    }
-  },
-  plastic: {
-   title: '粗粒硬塑膠碎片',
-   image: 'assets/coarse-plastic-flakes.webp',
-   summary: '破損硬塑膠收納盒經分揀後，可得到較大的碎片。這些碎片是有待加工的二創原材料。',
-   source: '原材料示意。實際使用前，由工作坊核對塑膠種類、潔淨程度與可加工條件。',
-   destination: {
-    heading: '原材料 · 硬塑膠粗碎片',
-    preparation: '先由工作坊確認碎片乾淨且材質相同，再判斷是否能加工成板材。',
-    title: '粗粒硬塑膠：板材加工參考',
-    text: '符合工作坊接收條件的同材質碎片，可作為板材的原料。中庭硬筆盒展示了板材裁製盒身與盒蓋的一種用途。',
-    product: 'C02'
-   }
   }
  };
  let scene='jeans',observed=false,result=null,chosen=null;
@@ -54,7 +41,6 @@
   el('ai-photo-controls').hidden = Boolean(destination);
   el('ai-material-route').hidden = !destination;
   el('ai-show-destination').disabled = true;
-  el('ai-material-product').hidden = true;
   document.querySelectorAll('[data-ai-scene]').forEach(button => {
    const active = button.dataset.aiScene === id;
    button.classList.toggle('active', active);
@@ -104,9 +90,6 @@
   el('ai-route-title').textContent = destination.title;
   el('ai-route-text').textContent = destination.text;
   el('ai-step-state').textContent = '已顯示物料去向';
-  const productLink = el('ai-material-product');
-  productLink.hidden = !destination.product;
-  if (destination.product) productLink.href = '#product-' + destination.product;
   el('ai-route-title').scrollIntoView({block:'start'});
  });
  el('ai-mark').addEventListener('change',()=>{el('ai-hole').hidden=!el('ai-mark').checked});
