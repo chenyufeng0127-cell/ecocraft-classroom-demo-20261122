@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="zh-Hant-HK">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>校園系列用料圖 · EcoCraft</title>
+  <link rel="stylesheet" href="campus-plate.css">
+  <style>
+    * {box-sizing: border-box;}
+    body {margin: 0; background: #183921; color: #f8f4e9; font: 16px/1.6 system-ui, sans-serif;}
+    main {max-width: 1536px; margin: auto; padding: 14px clamp(12px, 2vw, 32px) 24px;}
+    a {display: inline-block; padding: 8px 0 14px; color: inherit; text-underline-offset: 3px;}
+    #reading {display: none;}
+    @media (max-width: 600px) {
+      #reading {display: block; margin: 16px 0 0;}
+      #reading h1 {margin: 0 0 8px; font-size: 1.25rem;}
+      #reading p {margin: 0; line-height: 1.7;}
+    }
+  </style>
+</head>
+<body><main>
+  <a id="back" href="studio.html#campus-collection">← 返回校園系列</a>
+  <div id="plate"></div>
+  <section id="reading"></section>
+</main>
+<script src="campus-products.js?v=campus-labels1"></script>
+<script src="campus-plate.js"></script>
+<script>
+  const id = new URLSearchParams(location.search).get('id');
+  const work = campusProducts.find(product => product.id === id);
+  if (work) {
+    document.title = work.name + ' · EcoCraft';
+    document.querySelector('#back').href = 'studio.html#product-' + work.id;
+    document.querySelector('#plate').innerHTML = campusPlate(work);
+    document.querySelector('#reading').innerHTML = `<h1>${work.name}</h1><p>可選回收來源</p>` +
+      work.sourceUses.map(line => `<p>${line}</p>`).join('');
+  } else {
+    document.querySelector('#plate').textContent = '請返回校園系列選擇作品。';
+  }
+</script>
+</body>
+</html>

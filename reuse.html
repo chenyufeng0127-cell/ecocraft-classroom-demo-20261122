@@ -2,24 +2,18 @@
 <html lang="zh-Hant-HK">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#244f2c">
   <title>校園閒置領取｜EcoCraft</title>
   <meta name="description" content="瀏覽完好物品示例，體驗免費預約及校內自取。">
   <link rel="stylesheet" href="shop.css?v=shop-r6">
   <link rel="stylesheet" href="reuse.css?v=retail1">
   <script src="reuse.js" defer></script>
-</head>
+<link rel="stylesheet" href="entry-navigation.css?v=1"></head>
 <body class="reuse-page">
   <a class="skip" href="#reuse-list">跳到物品清單</a>
   <div class="demo-notice">領取流程演示｜AI 示意圖，無實物庫存及實際預約。</div>
-  <header class="shop-header">
-    <a class="brand" href="index.html" aria-label="EcoCraft 首頁">EcoCraft <span>校園循環商店</span></a>
-    <nav class="desktop-nav" aria-label="主導覽">
-      <a href="index.html#shop">二創自營商品</a>
-      <a href="reuse.html" aria-current="page">校園閒置領取</a>
-    </nav>
-  </header>
+  <header class="shop-header ec-header"><a class="brand" href="studio.html#home" aria-label="EcoCraft 展廳首頁">EcoCraft<span>校園閒置領取</span></a><nav class="ec-routes ec-routes--top" aria-label="主要導覽"><a href="studio.html#home" data-route="home">展廳首頁</a><a href="studio.html#ai-demo" data-route="ai">AI 演示</a><a href="reuse.html" data-route="reuse" aria-current="page">閒置領取</a><a href="index.html?v=showroom-link1#shop" data-route="shop">自營網店</a></nav></header>
   <main>
     <section class="reuse-intro" aria-labelledby="reuse-title">
       <div>
@@ -107,10 +101,7 @@
     <a class="brand" href="index.html">EcoCraft</a>
     <div><a href="index.html#shop">二創自營商品</a></div>
   </footer>
-  <nav class="bottom-nav two-entry-nav" aria-label="頁面導覽">
-    <a href="index.html#shop">二創商店</a>
-    <a href="#reuse-list" aria-current="page">閒置領取</a>
-  </nav>
+  <nav class="ec-routes ec-routes--bottom" aria-label="主要導覽"><a href="studio.html#home" data-route="home">展廳首頁</a><a href="studio.html#ai-demo" data-route="ai">AI 演示</a><a href="reuse.html" data-route="reuse" aria-current="page">閒置領取</a><a href="index.html?v=showroom-link1#shop" data-route="shop">自營網店</a></nav>
   <dialog class="checkout-dialog reuse-dialog" id="reuse-dialog" aria-labelledby="reuse-dialog-title">
     <button class="dialog-close" type="button" id="close-reuse-dialog" aria-label="關閉預約">×</button>
     <p class="small-heading">校內自取演示</p>
@@ -143,5 +134,5 @@
     </section>
   </dialog>
   <div id="reuse-toast" class="shop-toast" role="status" aria-live="polite"></div>
-</body>
+<script src="entry-navigation.js?v=1"></script></body>
 </html>

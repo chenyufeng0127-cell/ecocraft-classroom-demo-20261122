@@ -1,0 +1,42 @@
+/* Main destinations use the same order at both entry URLs and in the pickup area. */
+.ec-header { gap: 20px; padding: 14px max(5vw, 20px); }
+.ec-header .brand { flex: 0 0 auto; }
+.ec-header .brand span { margin-left: 12px; letter-spacing: .07em; }
+.ec-routes { display: flex; align-items: stretch; gap: 4px; }
+.ec-routes a { display: inline-flex; align-items: center; justify-content: center; text-decoration: none; min-height: 44px; padding: 6px 13px; color: var(--muted); font-size: 15px; font-weight: 500; white-space: nowrap; border-bottom: 2px solid transparent; }
+.ec-routes a:hover { color: var(--paper); background: #a1c6a416; }
+.ec-routes [aria-current] { color: var(--paper); border-color: var(--sage); }
+.ec-routes--top { margin-left: auto; }
+.ec-routes--bottom { display: none; }
+.ec-header #present { min-height: 44px; font-size: 14px; }
+#home .ec-home-copy h1 { margin: 0 0 27px; line-height: 1.17; font-size: clamp(40px, 4.4vw, 64px); font-weight: 600; letter-spacing: -.045em; }
+.ec-doors { border-top: 1px solid #fbf6f168; }
+.ec-doors a { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 13px 5px; text-decoration: none; border-bottom: 1px solid #fbf6f155; }
+.ec-doors a:hover { background: #fbf6f10c; }
+.ec-doors strong, .ec-doors small { display: block; }
+.ec-doors strong { color: var(--paper); font-size: 19px; font-weight: 600; }
+.ec-doors small { color: #d4e2d1; font-size: 14px; }
+.ec-arrow { font-family: system-ui, sans-serif; font-size: 22px; line-height: 1; color: var(--sage); margin-right: 8px; }
+html { scroll-padding-top: 84px; }
+@media(max-width: 800px) {
+  html {scroll-padding-top: 71px;}
+  .ec-header {gap: 9px; min-height: 57px; padding: 5px 15px;}
+  .ec-header .brand {font-size: 27px;}
+  .ec-header .brand span {display: inline; margin-left: 8px; font-size: 12px;}
+  .ec-routes--top {display: none;}
+  .ec-routes--bottom {display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 0; position: fixed; inset: auto 0 0; z-index: 26; background: #183921; border-top: 1px solid #fbf6f142; padding: 0 env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);}
+  .ec-routes--bottom a {padding: 4px 2px; border-bottom: 0; border-top: 3px solid transparent; font-size: 13px; line-height: 1.4; min-height: 49px;}
+  .ec-routes--bottom [aria-current] {border-top-color: var(--sage); background: #a1c6a414;}
+  body {padding-bottom: calc(55px + env(safe-area-inset-bottom));}
+  nav.progress {position: static; margin: 0; padding: 0 8px;}
+  body.present nav.progress {position: static;}
+  #home.hero.section {min-height: 0; grid-template-columns: minmax(0,1fr); padding: 26px 18px 32px; gap: 22px;}
+  #home .ec-home-copy h1 {font-size: clamp(34px,8vw,48px); margin-bottom: 18px;}
+  .ec-doors a {padding: 8px 4px;}
+  .ec-doors strong {font-size: 17px;}
+  .ec-doors small {font-size: 13px;}
+}
+@media(prefers-reduced-motion: reduce){html{scroll-behavior:auto;}}
+
+/* Preserve the silhouette and side seams of each piece in the shop grid. */
+.catalog-grid .photo-button>img { object-fit: contain; aspect-ratio: 3 / 2; background: #e6d9c8; }

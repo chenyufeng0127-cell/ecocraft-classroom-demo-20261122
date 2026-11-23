@@ -1,0 +1,47 @@
+.campus-plate, .work-series .product-tab .campus-plate {
+  container-type: inline-size;
+  display: block;
+  position: relative;
+  width: 100%;
+  margin: 0;
+  text-align: left;
+}
+.campus-plate > img,
+#campus-tabs .campus-plate > img,
+.campus-details .product-art .campus-plate > img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: none;
+  margin: 0;
+  aspect-ratio: 3 / 2;
+  object-fit: contain;
+}
+.campus-plate .campus-caption, .work-series .product-tab .campus-caption {
+  position: absolute;
+  top: 6.7%;
+  left: 4.3%;
+  margin: 0;
+  color: #2e241e;
+  font-family: "Songti TC", "Noto Serif TC", "PMingLiU", Georgia, serif;
+  font-style: normal;
+  letter-spacing: 0;
+  text-align: left;
+}
+.campus-caption > * {display: block; white-space: nowrap;}
+.campus-caption > strong {
+  width: max-content;
+  padding-bottom: .7cqw;
+  border-bottom: .12cqw solid #958474;
+  font-size: 3.7cqw;
+  line-height: 1.2;
+  font-weight: 600;
+}
+.campus-caption > em {
+  padding: .8cqw 0 .45cqw;
+  font-size: 2.17cqw;
+  font-weight: 600;
+  font-style: normal;
+  line-height: 1.2;
+}
+.campus-caption > small {font-size: 2.25cqw; font-weight: 500; line-height: 1.45;}

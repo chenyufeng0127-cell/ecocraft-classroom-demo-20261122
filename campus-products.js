@@ -1,6 +1,7 @@
 const campusProducts = [
   {
     id: 'C01',
+    sourceUses: ['舊活動橫額 → 袋身', '舊電腦袋拉鏈 → 袋口'],
     name: '海灣拉鏈收納袋',
     image: 'assets/campus-comparisons/01-pouch.webp',
     material: '舊橫額 × 舊拉鏈',
@@ -17,6 +18,7 @@ const campusProducts = [
   },
   {
     id: 'C02',
+    sourceUses: ['舊硬膠收納盒 → 同類膠碎', '熱壓膠板 → 盒身與盒蓋'],
     name: '中庭硬筆盒',
     image: 'assets/campus-comparisons/02-pencil-box.webp',
     material: '舊塑膠收納盒 × 回收板材',
@@ -33,6 +35,7 @@ const campusProducts = [
   },
   {
     id: 'C03',
+    sourceUses: ['舊帆布袋 → 筆插及內襯', '舊牛仔布 → 拱廊拼布'],
     name: '拱廊捲式筆袋',
     image: 'assets/campus-comparisons/03-pencil-roll.webp',
     material: '舊帆布袋 × 牛仔布',
@@ -49,6 +52,7 @@ const campusProducts = [
   },
   {
     id: 'C04',
+    sourceUses: ['舊酒紅衛衣 → 殼身', '米白帆布 → 肚皮貼布'],
     name: '紅鳥 AirPods 殼',
     image: 'assets/campus-comparisons/04-bird-earbuds.webp',
     material: '舊酒紅衛衣 × 帆布邊料',
@@ -65,6 +69,7 @@ const campusProducts = [
   },
   {
     id: 'C05',
+    sourceUses: ['舊牛仔褲 → 卡套主體', '綠色帆布碎料 → 棕櫚樹'],
     name: '棕櫚牛仔卡套',
     image: 'assets/campus-comparisons/05-card-sleeve.webp',
     material: '舊牛仔褲 × 帆布碎料',
@@ -81,6 +86,7 @@ const campusProducts = [
   },
   {
     id: 'C06',
+    sourceUses: ['紅色舊布 → 日晷弧面', '舊鑰匙圈 → 掛環'],
     name: '紅鳥日晷鑰匙扣',
     image: 'assets/campus-comparisons/06-sundial.webp',
     material: '紅色舊衣或布袋 × 舊金屬圈',
@@ -97,6 +103,7 @@ const campusProducts = [
   },
   {
     id: 'C07',
+    sourceUses: ['舊藍衣料 → 海面與遠山', '淺綠舊布袋 → 天空'],
     name: '海灣小艇杯墊',
     image: 'assets/campus-comparisons/07-coaster.webp',
     material: '藍色舊衣 × 舊淺綠布袋',
@@ -113,6 +120,7 @@ const campusProducts = [
   },
   {
     id: 'C08',
+    sourceUses: ['舊玩偶短絨 → 殼身與耳朵', '舊長絨飾邊 → 額前鬃毛'],
     name: '小野豬 AirPods 殼',
     image: 'assets/campus-comparisons/08-boar-earbuds.webp',
     material: '舊毛絨玩偶 × 舊長絨飾邊',

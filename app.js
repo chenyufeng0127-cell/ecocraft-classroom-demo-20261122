@@ -9,7 +9,7 @@ let selected = [];
 for (const [group, items] of [['#daily-tabs', products], ['#campus-tabs', campusProducts]]) {
   $(group).innerHTML = items.map(work => `
     <button class="product-tab" type="button" data-product="${work.id}" aria-label="查看${work.name}" aria-pressed="false">
-      <img src="${work.image}" alt="" loading="lazy" decoding="async">
+      ${isCampus(work) ? campusPlate(work, true) : `<img src="${work.image}" alt="" loading="lazy" decoding="async">`}
     </button>`).join('');
   $(group).addEventListener('click', event => {
     const button = event.target.closest('[data-product]');
@@ -39,12 +39,12 @@ function renderProduct(id) {
       : current.material + '經檢查、整理與製作，成為' + current.name + '。',
   };
   for (const [selector, value] of Object.entries(values)) $(selector).textContent = value;
-  const image = $('#product-image');
-  image.src = current.image;
-  image.alt = current.name + (campus ? '的成品圖' : '的 AI 概念圖');
+  $('.product-art').innerHTML = campus
+    ? campusPlate(current)
+    : `<img id="product-image" src="${current.image}" alt="${current.name}的 AI 概念圖">`;
   $('#product-details').classList.toggle('campus-details', campus);
-  $('#product-full-image').hidden = !campus;
-  $('#product-full-image').href = current.image;
+  $('#product-full-image').hidden = false;
+  $('#product-full-image').href = campus ? 'campus-card.html?id=' + current.id : current.image;
   $('#price-block').hidden = campus;
   $('#steps').innerHTML = current.process.map(step => `<li>${step}</li>`).join('');
   document.querySelectorAll('[data-product]').forEach(button => {
@@ -175,7 +175,7 @@ $('#match-form').addEventListener('submit',e=>{
 });
 $('#match-candidates').addEventListener('click',e=>{const id=e.target.dataset.matchProduct;if(id)showWork(id)});
 $('#present').addEventListener('click',()=>{const on=document.body.classList.toggle('present');$('#present').setAttribute('aria-pressed',on);$('#present').textContent=on?'退出演示模式':'演示模式';toast(on?'演示模式已开启，可逐款切换讲解。':'已返回完整展厅。')});
-const sections=[...document.querySelectorAll('section[id]')];const links=[...document.querySelectorAll('.progress a')];function updateNav(){let active='materials';for(const s of sections)if(s.getBoundingClientRect().top<innerHeight*.42)active=s.id;if(active==='home')active='materials';for(const a of links){const on=a.hash==='#'+active;a.classList.toggle('active',on);if(on)a.setAttribute('aria-current','location');else a.removeAttribute('aria-current')}}window.addEventListener('scroll',updateNav,{passive:true});
+const sections=[...document.querySelectorAll('section[id]')];const links=[...document.querySelectorAll('.progress a')];function updateNav(){let active='home';for(const s of sections)if(s.getBoundingClientRect().top<innerHeight*.42)active=s.id;for(const a of links){const on=a.hash==='#'+active;a.classList.toggle('active',on);if(on)a.setAttribute('aria-current','location');else a.removeAttribute('aria-current')}}window.addEventListener('scroll',updateNav,{passive:true});
 renderProduct('T01');
 renderList();
 updateNav();
