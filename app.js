@@ -4,30 +4,16 @@ const isCampus = work => campusProducts.includes(work);
 const workStatus = work => isCampus(work) ? '成品展示 · 模板待實測' : '候選構想 · 模板未啟用';
 const $ = selector => document.querySelector(selector);
 let current = products[0];
-let view = 'use';
 let selected = [];
 
 for (const [group, items] of [['#daily-tabs', products], ['#campus-tabs', campusProducts]]) {
   $(group).innerHTML = items.map(work => `
-    <button class="product-tab" type="button" data-product="${work.id}" aria-pressed="false">
+    <button class="product-tab" type="button" data-product="${work.id}" aria-label="查看${work.name}" aria-pressed="false">
       <img src="${work.image}" alt="" loading="lazy" decoding="async">
-      <b>${work.name}</b>
     </button>`).join('');
   $(group).addEventListener('click', event => {
     const button = event.target.closest('[data-product]');
     if (button) showWork(button.dataset.product);
-  });
-}
-
-function renderStory() {
-  const description = current.story
-    ? current.story + '，製成' + current.name + '。'
-    : current.material + '經檢查、整理與製作，成為' + current.name + '。';
-  $('#story-content').textContent = view === 'use' ? current.use : description;
-  document.querySelectorAll('[data-view]').forEach(button => {
-    const active = button.dataset.view === view;
-    button.classList.toggle('active', active);
-    button.setAttribute('aria-pressed', String(active));
   });
 }
 
@@ -48,48 +34,57 @@ function renderProduct(id) {
     '#material-strip': current.material,
     '#raw-title': current.material,
     '#raw-text': current.raw,
-    '#after-title': current.name,
-    '#after-text': current.use,
+    '#story-content': current.story
+      ? current.story + '，製成' + current.name + '。'
+      : current.material + '經檢查、整理與製作，成為' + current.name + '。',
   };
   for (const [selector, value] of Object.entries(values)) $(selector).textContent = value;
   const image = $('#product-image');
   image.src = current.image;
-  image.alt = current.name + (campus ? '成品與物料說明' : '的 AI 概念圖');
+  image.alt = current.name + (campus ? '的成品圖' : '的 AI 概念圖');
   $('#product-details').classList.toggle('campus-details', campus);
-  const seriesLink = $('#product-series-link');
-  seriesLink.href = campus ? '#campus-collection' : '#daily-collection';
-  seriesLink.textContent = '返回' + (campus ? '校園系列' : '日常系列');
   $('#product-full-image').hidden = !campus;
   $('#product-full-image').href = current.image;
   $('#price-block').hidden = campus;
   $('#steps').innerHTML = current.process.map(step => `<li>${step}</li>`).join('');
   document.querySelectorAll('[data-product]').forEach(button => {
-    const active = button.dataset.product === current.id;
+    const active = !$('#product-details').hidden && button.dataset.product === current.id;
     button.classList.toggle('active', active);
     button.setAttribute('aria-pressed', String(active));
   });
-  renderStory();
 }
 
 function showWork(id) {
-  view = 'use';
-  renderProduct(id);
   const details = $('#product-details');
+  details.hidden = false;
+  $('#transform').open = false;
+  renderProduct(id);
   details.focus({ preventScroll: true });
   details.scrollIntoView();
 }
 
-function openWorkFromLink() {
-  const id = location.hash.slice('#product-'.length);
-  if (location.hash.startsWith('#product-') && findWork(id)) showWork(id);
-}
-
-document.querySelectorAll('[data-view]').forEach(button => {
-  button.addEventListener('click', () => {
-    view = button.dataset.view;
-    renderStory();
-  });
+$('#close-work').addEventListener('click', () => {
+  const selectedCard = $(`[data-product="${current.id}"]`);
+  selectedCard.classList.remove('active');
+  selectedCard.setAttribute('aria-pressed', 'false');
+  $('#product-details').hidden = true;
+  if (location.hash.startsWith('#product-') || location.hash === '#transform') {
+    const series = isCampus(current) ? '#campus-collection' : '#daily-collection';
+    history.replaceState(history.state, '', series);
+  }
+  selectedCard.focus();
 });
+
+function openWorkFromLink() {
+  if (location.hash === '#transform') {
+    showWork(current.id);
+    $('#transform').open = true;
+    $('#transform').scrollIntoView();
+  } else if (location.hash.startsWith('#product-')) {
+    const work = findWork(location.hash.slice('#product-'.length));
+    if (work) showWork(work.id);
+  }
+}
 
 let toastTimer;
 function toast(text) {
@@ -178,7 +173,7 @@ $('#match-form').addEventListener('submit',e=>{
  else {ids=material==='denim'?['T01','T02','T04']:material==='cotton'?['T03']:['T01'];title='A类候选材料：尚未批准制作';text=material==='cardboard'?'先看纸板能否继续包装；不能直接用时，才核T01的尺寸与强度，且需配齐布料和辅料。不匹配模板时，只有下游确认接收才归C；未确认则不开收。':'还需量可用尺寸、检查强度、清洁与辅料。以下仅供参考，候选模板目前均未启用，须实物打样与复做通过。';}
  $('#match-title').textContent=title;$('#match-text').textContent=text;$('#match-candidates').innerHTML=ids.map(id=>`<button class="candidate-chip" data-match-product="${id}">${id} ${products.find(p=>p.id===id).name}</button>`).join('');
 });
-$('#match-candidates').addEventListener('click',e=>{const id=e.target.dataset.matchProduct;if(id){renderProduct(id);$('#works').scrollIntoView({behavior:'smooth'})}});
+$('#match-candidates').addEventListener('click',e=>{const id=e.target.dataset.matchProduct;if(id)showWork(id)});
 $('#present').addEventListener('click',()=>{const on=document.body.classList.toggle('present');$('#present').setAttribute('aria-pressed',on);$('#present').textContent=on?'退出演示模式':'演示模式';toast(on?'演示模式已开启，可逐款切换讲解。':'已返回完整展厅。')});
 const sections=[...document.querySelectorAll('section[id]')];const links=[...document.querySelectorAll('.progress a')];function updateNav(){let active='materials';for(const s of sections)if(s.getBoundingClientRect().top<innerHeight*.42)active=s.id;if(active==='home')active='materials';for(const a of links){const on=a.hash==='#'+active;a.classList.toggle('active',on);if(on)a.setAttribute('aria-current','location');else a.removeAttribute('aria-current')}}window.addEventListener('scroll',updateNav,{passive:true});
 renderProduct('T01');

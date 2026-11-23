@@ -25,14 +25,7 @@ for (const carousel of document.querySelectorAll('[data-work-carousel]')) {
     image.src = opensShopDetail ? 'assets/shop-' + work.id + '.webp' : work.image;
     image.alt = work.name + (campus ? '成品圖' : '概念圖');
     image.loading = itemIndex === 0 ? 'eager' : 'lazy';
-    const caption = document.createElement('span');
-    caption.className = 'work-carousel-caption';
-    const series = document.createElement('span');
-    series.textContent = campus ? '校園系列 · 成品展示' : '日常系列 · 概念設計';
-    const title = document.createElement('strong');
-    title.textContent = work.name;
-    caption.append(series, title);
-    panel.append(image, caption);
+    panel.append(image);
     track.append(panel);
   }
 
@@ -82,7 +75,7 @@ for (const carousel of document.querySelectorAll('[data-work-carousel]')) {
     loopPanel.querySelector('img').loading = 'lazy';
     track.append(loopPanel);
 
-    const advanceDelay = 2000;
+    const advanceDelay = 1500;
     let playing = !reducedMotion.matches;
     let visible = false;
     let hovered = false;

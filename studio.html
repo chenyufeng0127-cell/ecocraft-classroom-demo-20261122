@@ -1,11 +1,11 @@
 <!doctype html>
 <html lang="zh-Hans">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#244f2c"><title>EcoCraft · 闲置的下一种可能</title><link rel="stylesheet" href="style.css?v=campus-collection"><link rel="stylesheet" href="ai-style.css?v=material-cases2"><link rel="stylesheet" href="collection.css?v=rotation1"></head>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#244f2c"><title>EcoCraft · 闲置的下一种可能</title><link rel="stylesheet" href="style.css?v=campus-collection"><link rel="stylesheet" href="ai-style.css?v=material-cases2"><link rel="stylesheet" href="collection.css?v=retail1"></head>
 <body>
 <a class="skip" href="#works">跳到作品</a>
 <header class="top"><a class="brand" href="#home">EcoCraft<span>校园循环设计</span></a><div class="top-actions"><a class="text-button" href="./">逛自营商店</a><span class="tag">二創作品展廳</span><button id="present" class="text-button" aria-pressed="false">演示模式</button></div></header>
 <main>
-<section class="hero section" id="home"><div class="hero-copy"><p class="eyebrow">把闲置，接到下一种用途</p><h1>旧布的新一页，<br>从日常的小需要开始。</h1><p class="lead">顺路交出闲置，让合适的材料成为实用小物。<br>先看用途、设计和材料的变化，再决定值不值得带走。</p><div class="actions"><a class="button primary" href="#ai-demo">体验AI辅助检查</a><a class="button outline" href="#materials">先看旧物分级</a></div><p class="small">成品、候选设计与流程演示；暂无现货，不接订单或付款。</p></div><div class="work-carousel" data-work-carousel="studio" role="region" aria-label="作品照片輪播">
+<section class="hero section" id="home"><div class="hero-copy"><p class="eyebrow">把闲置，接到下一种用途</p><h1>旧布的新一页，<br>从日常的小需要开始。</h1><div class="actions"><a class="button primary" href="#ai-demo">体验AI辅助检查</a><a class="button outline" href="#materials">先看旧物分级</a></div></div><div class="work-carousel" data-work-carousel="studio" role="region" aria-label="作品照片輪播">
  <div class="work-carousel-track" tabindex="0" aria-label="左右捲動觀看作品"></div>
  <div class="work-carousel-controls">
   <button type="button" data-carousel-toggle>暫停輪播</button>
@@ -67,30 +67,36 @@
 
 <section class="section works" id="works">
  <div class="section-heading row-heading">
-  <div><h2>選一款，看看舊料能變成什麼</h2><p>點選作品可查看用途、參考尺寸、物料變身和製作模板。</p></div>
+  <div><h2>二創作品</h2></div>
   <nav class="work-series-links" aria-label="作品系列"><a href="#daily-collection">日常系列</a><a href="#campus-collection">校園系列</a></nav>
  </div>
  <div class="work-series" id="daily-collection" aria-labelledby="daily-collection-title">
   <h3 id="daily-collection-title">日常系列</h3>
-  <p>4 款日常收納構想。雙格收納盒用作製作工序示例。</p>
   <div class="product-tabs" id="daily-tabs" role="group" aria-label="日常系列作品"></div>
  </div>
  <div class="work-series" id="campus-collection" aria-labelledby="campus-collection-title">
   <h3 id="campus-collection-title">校園系列</h3>
-  <p>8 款以校園風景與地標為靈感的二創成品展示。</p>
   <div class="product-tabs" id="campus-tabs" role="group" aria-label="校園系列作品"></div>
  </div>
- <div class="showcase" id="product-details" tabindex="-1"><div class="stage"><div class="stage-top"><span id="product-number">T01</span><span id="product-image-label"></span></div><div class="product-art"><img id="product-image" src="assets/T01.png" alt=""></div><div class="material-strip"><b id="material-strip"></b><a id="product-full-image" href="assets/T01.png" hidden>查看大圖與物料說明</a></div></div><article class="product-info"><a id="product-series-link" href="#daily-collection">返回日常系列</a><p class="eyebrow" id="material"></p><h3 id="product-name"></h3><p class="product-short" id="product-short"></p><p id="product-use"></p><dl><div><dt>參考尺寸</dt><dd id="product-size"></dd></div><div><dt>状态</dt><dd id="product-status"></dd></div></dl><div class="story-toggle" role="group" aria-label="展示方式"><button class="active" data-view="use" aria-pressed="true">看用途</button><button data-view="story" aria-pressed="false">看材料变身</button></div><div id="story-content" class="story-content" aria-live="polite"></div><div class="price" id="price-block"><strong id="price"></strong><p id="price-note"></p></div><div class="actions"><button id="select-product" class="button primary">加入演示选择单</button><button id="open-template" class="button outline">看制作模板</button></div></article></div></section>
-<section class="section" id="transform"><div class="section-heading"><p class="eyebrow">材料变身</p><h2>把「旧」讲清楚，也把「新用途」讲清楚。</h2><p>前后对比用于说明创意。正式商品页将改用本批真实原料、实物照片和质量记录。</p></div><div class="transformation"><div class="transformation-side"><span class="card-kicker">从这里开始</span><h3 id="raw-title"></h3><p id="raw-text"></p></div><div class="transform-symbol" aria-hidden="true">↗</div><div class="transformation-side after"><span class="card-kicker">去到下一种用途</span><h3 id="after-title"></h3><p id="after-text"></p></div></div><ol class="steps" id="steps"></ol><p class="note">研究启发：真实的材料来源与变化过程，可能增强商品故事。不是编造某件旧衣的经历，也不表示展示照片便一定带来购买。</p></section>
+ <div class="showcase" id="product-details" tabindex="-1" hidden><div class="stage"><div class="stage-top"><span id="product-number">T01</span><span id="product-image-label"></span></div><div class="product-art"><img id="product-image" src="assets/T01.png" alt=""></div><div class="material-strip"><b id="material-strip"></b><a id="product-full-image" href="assets/T01.png" hidden>查看大圖</a></div></div><article class="product-info"><button type="button" class="text-button" id="close-work">收起作品詳情</button><p class="eyebrow" id="material"></p><h3 id="product-name"></h3><p class="product-short" id="product-short"></p><p id="product-use"></p><dl><div><dt>參考尺寸</dt><dd id="product-size"></dd></div><div><dt>状态</dt><dd id="product-status"></dd></div></dl><div class="price" id="price-block"><strong id="price"></strong><p id="price-note"></p></div><div class="actions"><button id="select-product" class="button primary">加入演示选择单</button><button id="open-template" class="button outline">看制作模板</button></div></article>  <details class="work-material-details" id="transform">
+   <summary>看材料變身</summary>
+   <p id="story-content"></p>
+   <div class="work-material-grid">
+    <div><h4 id="raw-title"></h4><p id="raw-text"></p></div>
+    <div><h4>製作步驟</h4><ol id="steps"></ol></div>
+   </div>
+  </details>
+ </div></section>
+
 <section class="section" id="material-match"><div class="section-heading"><p class="eyebrow">模板匹配演示</p><h2>先看物品状态，再找适合的去向。</h2><p>AI可协助整理信息；模板是否能用，仍由创客检查实物。</p></div><div class="match-grid"><form class="card" id="match-form"><label for="condition">物品当前状态</label><select id="condition"><option value="damaged">干净，但已不适合原样使用</option><option value="intact">完好，可以继续原样使用</option><option value="unknown">有污渍、异味或状态不明</option></select><label for="fabric">可确认的材料</label><select id="fabric"><option value="denim">牛仔布</option><option value="cotton">棉质T恤</option><option value="cardboard">干净纸板</option><option value="jacket">旧外套</option><option value="storage">宿舍塑料收纳盒</option><option value="other">其他或尚不确定</option></select><button class="button primary" type="submit">查看候选去向</button></form><div class="match-result card" aria-live="polite"><span class="card-kicker">演示结果</span><h3 id="match-title">还需要量尺寸与检查强度</h3><p id="match-text">牛仔布可能对应多个候选，但目前没有已启用模板。信息匹配不会直接批准收料或制作。</p><div id="match-candidates"></div></div></div></section>
 <section class="section" id="flow"><div class="section-heading"><p class="eyebrow">一条完整的循环链</p><h2>捐赠者、创客、买家，可以是不同的人。</h2></div><div class="flow"><article><b>顺路投递</b><p>一个获准点，开放时间内自助投递；公布清单、满箱及停收情况。</p></article><article><b>检查与分流</b><p>完好先直接重用；符合启用模板的材料配包；回收料只交已确认渠道。</p></article><article><b>有偿制作</b><p>校内兼职创客按验证工序制作，核材料、工时、质量与接单容量。</p></article><article><b>线上展示交付</b><p>看实物、总价和交付安排；条件齐全才接小批订单，质检后交付。</p></article></div><div class="small-panel"><strong>后台六箱，在同一个点。</strong><p>A类1箱、B类2箱、C类2箱、待核1箱，用于分类暂存；前端是一个待检投递箱。不是六个投递点。</p></div></section>
-<section class="section" id="validate"><div class="section-heading"><p class="eyebrow">从兴趣，走到真实购买</p><h2>喜欢设计，是起点；按条件付款并交付，才是订单。</h2></div><div class="three-grid"><article class="card"><span class="card-kicker">先看选择</span><h3>哪款、什么用途</h3><p>展示四款，记录选择和不选原因。点击、收藏、登记都只算兴趣，不能当收入。</p></article><article class="card"><span class="card-kicker">再看实物</span><h3>真尺寸、真质量、真总价</h3><p>各款完成相應模板打樣及測試後，再展示實拍與交付條件。价格须核实际人工、辅料和售后成本。</p></article><article class="card"><span class="card-kicker">最后看履约</span><h3>實付與交付紀錄</h3><p>記錄真實付款、交付、退款及實際成本，作為調整與續期依據。</p></article></div><div class="small-panel"><strong>怎么让人感兴趣？</strong><p>用途图 + 真实材料变身 + 可选设计 + 可核对质量与总价。可在同价、同产品条件下轮换展示侧重点，观察访问、购买与退款；小样本只作方向判断。</p></div></section>
-<section class="section sources" id="sources"><div class="section-heading"><p class="eyebrow">支持动机的真实依据</p><h2>有相近案例，所以值得验证。</h2><p>这些资料支持探索与设计方法，不代替科大学生对本商品、本价格的真实购买。</p></div><div class="three-grid"><article class="card"><span class="card-kicker">香港 · 校园交易</span><h3>HKUST Thrive Shop</h3><p>科大官方2024年报道：项目在校内转售超过100件二手衣物。说明校园循环交易曾实际发生，品类是二手衣物。</p><a href="https://sust.hkust.edu.hk/news/celebrating-student-led-projects-driving-clothing-circularity-hkust" target="_blank" rel="noopener">阅读科大原文</a></article><article class="card"><span class="card-kicker">大学 · 二创销售</span><h3>Missing Button</h3><p>Brown官方报道：学生将过剩服装改造为二创系列，首个RISD系列售罄。没有公开件数、利润或学生买家占比。</p><a href="https://www.brown.edu/news/2022-10-25/missing-button" target="_blank" rel="noopener">阅读大学原文</a></article><article class="card"><span class="card-kicker">研究 · 展示方法</span><h3>让材料来源可见</h3><p>2019年《Journal of Marketing》研究包括大学场地销售实验：强调来源的一组有更多购买记录。转化率差异未达5%显著水平，不套用销量倍数。</p><a href="https://doi.org/10.1177/0022242919872156" target="_blank" rel="noopener">阅读研究原文</a></article></div><p class="note">AI生成产品概念图与Codex网页原型。四款均未打样，无库存、销量、付款、学校合作或安全认证声明。访问外部资料需联网；本展示不向外部发送选择记录。</p></section>
+
+
 </main>
 <footer><span class="brand">EcoCraft</span><p>让合适的旧料，接上真实的新用途。</p><button id="open-list" class="button outline">演示选择单 <span id="count">0</span></button></footer>
-<nav class="progress" aria-label="展厅章节"><a href="#materials">旧物</a><a href="#ai-demo">AI演示</a><a href="#works">作品</a><a href="#transform">变身</a><a href="#material-match">模板</a><a href="#flow">流程</a><a href="#validate">验证</a><a href="#sources">依据</a></nav>
+<nav class="progress" aria-label="展厅章节"><a href="#materials">旧物</a><a href="#ai-demo">AI演示</a><a href="#works">作品</a><a href="#material-match">模板</a><a href="#flow">流程</a></nav>
 <dialog id="template-dialog" aria-labelledby="template-title"><button class="dialog-close" aria-label="关闭制作模板">×</button><p class="eyebrow" id="template-label">製作模板參考</p><h2 id="template-title"></h2><div id="template-body"></div><button class="button primary dialog-done">看完了</button></dialog>
 <dialog id="list-dialog" aria-labelledby="list-title"><button class="dialog-close" aria-label="关闭选择单">×</button><p class="eyebrow">仅保存在本页内</p><h2 id="list-title">演示选择单</h2><p>这是展示流程，不会生成订单、收款或向团队提交资料。关闭或刷新后清空。</p><ul id="selection-list"></ul><div class="actions"><button id="download-list" class="button primary">下载本地选择记录</button><button id="clear-list" class="button outline">清空选择</button></div><p class="note">下一步真实销售前：实物与复做通过、核价、确认材料与人手、公布交付与售后条件。</p></dialog>
 <div class="toast" role="status" aria-live="polite"></div>
-<script src="unavailable.js?v=shop-r6"></script><script src="products.js?v=shop-r6"></script><script src="campus-products.js?v=series1"></script><script src="work-carousel.js?v=rotation1"></script><script src="app.js?v=series1"></script><script src="ai-core.js?v=shop-r6"></script><script src="ai-ui.js?v=material-cases2"></script>
+<script src="unavailable.js?v=shop-r6"></script><script src="products.js?v=shop-r6"></script><script src="campus-products.js?v=retail1"></script><script src="work-carousel.js?v=retail1"></script><script src="app.js?v=retail1"></script><script src="ai-core.js?v=shop-r6"></script><script src="ai-ui.js?v=material-cases2"></script>
 </body></html>

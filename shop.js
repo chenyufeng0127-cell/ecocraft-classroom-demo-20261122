@@ -13,7 +13,7 @@
   const found=S.list({q:$('#search').value,category});
   $('#results-count').textContent=found.length+'款商品';
   $('#empty-results').hidden=found.length>0;
-  $('#catalog-grid').innerHTML=found.map(p=>`<article class="product-card"><button class="photo-button" data-detail="${p.id}" aria-label="查看${p.name}"><img src="${p.image}" alt="${p.name}的AI概念图，尚未打样" width="1100" height="733" loading="lazy"><span class="photo-label">AI概念图</span></button><div class="product-info"><p class="material">${p.material}</p><h3><button data-detail="${p.id}">${p.name}</button></h3><p class="product-copy">${p.short}</p><div class="card-bottom"><div><strong>${money(p.priceCents)}</strong><span>演示价</span></div><button class="compact-button" data-add="${p.id}" aria-label="加入购物车：${p.name}">加入购物车</button></div></div></article>`).join('');
+  $('#catalog-grid').innerHTML=found.map(p=>`<article class="product-card"><button class="photo-button" data-detail="${p.id}" aria-label="查看${p.name}"><img src="${p.image}" alt="${p.name}的AI概念图，尚未打样" width="1100" height="733" loading="lazy"></button><div class="product-info"><h3><button data-detail="${p.id}">${p.name}</button></h3><div class="card-bottom"><div><strong>${money(p.priceCents)}</strong><span>演示价</span></div><button class="compact-button" data-add="${p.id}" aria-label="加入购物车：${p.name}">加入购物车</button></div></div></article>`).join('');
   document.querySelectorAll('[data-category]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.category===category)));
  }
  function add(id,q=1){attempt(()=>{cart=S.add(cart,id,q);save();toast('已加入演示购物车。');});}

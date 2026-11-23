@@ -2,7 +2,7 @@ const campusProducts = [
   {
     id: 'C01',
     name: '海灣拉鏈收納袋',
-    image: 'assets/campus-collection/01-pouch.webp',
+    image: 'assets/campus-comparisons/01-pouch.webp',
     material: '舊橫額 × 舊拉鏈',
     short: '把海灣風景帶進日常收納。',
     size: '約 22 × 15 cm（版型參考）',
@@ -18,7 +18,7 @@ const campusProducts = [
   {
     id: 'C02',
     name: '中庭硬筆盒',
-    image: 'assets/campus-collection/02-pencil-box.webp',
+    image: 'assets/campus-comparisons/02-pencil-box.webp',
     material: '舊塑膠收納盒 × 回收板材',
     short: '把中庭的線條融入盒蓋。',
     size: '約 20 × 8 × 3 cm（版型參考）',
@@ -34,7 +34,7 @@ const campusProducts = [
   {
     id: 'C03',
     name: '拱廊捲式筆袋',
-    image: 'assets/campus-collection/03-pencil-roll.webp',
+    image: 'assets/campus-comparisons/03-pencil-roll.webp',
     material: '舊帆布袋 × 牛仔布',
     short: '展開取筆，收好便能捲起。',
     size: '展開約 25 × 22 cm（版型參考）',
@@ -50,7 +50,7 @@ const campusProducts = [
   {
     id: 'C04',
     name: '紅鳥 AirPods 殼',
-    image: 'assets/campus-collection/04-bird-earbuds.webp',
+    image: 'assets/campus-comparisons/04-bird-earbuds.webp',
     material: '舊酒紅衛衣 × 帆布邊料',
     short: '用酒紅布和米白拼布做出紅鳥造型。',
     size: '依 AirPods 充電盒型號量度長、寬、厚（版型參考）',
@@ -66,7 +66,7 @@ const campusProducts = [
   {
     id: 'C05',
     name: '棕櫚牛仔卡套',
-    image: 'assets/campus-collection/05-card-sleeve.webp',
+    image: 'assets/campus-comparisons/05-card-sleeve.webp',
     material: '舊牛仔褲 × 帆布碎料',
     short: '把校園風景做成日常卡套。',
     size: '約 10 × 7 cm（版型參考）',
@@ -82,7 +82,7 @@ const campusProducts = [
   {
     id: 'C06',
     name: '紅鳥日晷鑰匙扣',
-    image: 'assets/campus-collection/06-sundial.webp',
+    image: 'assets/campus-comparisons/06-sundial.webp',
     material: '紅色舊衣或布袋 × 舊金屬圈',
     short: '把日晷輪廓縮成隨身掛飾。',
     size: '本體約 8 × 5 cm，另加掛環（版型參考）',
@@ -98,7 +98,7 @@ const campusProducts = [
   {
     id: 'C07',
     name: '海灣小艇杯墊',
-    image: 'assets/campus-collection/07-coaster.webp',
+    image: 'assets/campus-comparisons/07-coaster.webp',
     material: '藍色舊衣 × 舊淺綠布袋',
     short: '用拼布和走線還原山海、小艇。',
     size: '直徑約 10 cm（版型參考）',
@@ -114,7 +114,7 @@ const campusProducts = [
   {
     id: 'C08',
     name: '小野豬 AirPods 殼',
-    image: 'assets/campus-collection/08-boar-earbuds.webp',
+    image: 'assets/campus-comparisons/08-boar-earbuds.webp',
     material: '舊毛絨玩偶 × 舊長絨飾邊',
     short: '保留絨布的觸感，拼成小野豬造型。',
     size: '依 AirPods 充電盒型號量度長、寬、厚（版型參考）',
