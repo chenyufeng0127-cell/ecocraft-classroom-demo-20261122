@@ -3,14 +3,72 @@
  const scenarios={
   jeans:{title:'破膝旧牛仔裤',image:'assets/AI_JEANS.png',summary:'外观疑似牛仔布；左侧膝部有可见破洞。背面、纤维成分、强度和可用裁片尺寸仍需补充。',source:'预置观察，不是实时识别；标框由本演示预先设置。',hole:true,fill:{fabric:'denim',basis:'manual',width:25,height:18,panels:2,wearable:'no',clean:true,cardboard:false}},
   jacket:{title:'完好旧外套',image:'assets/AI_JACKET.png',summary:'图中未见明显破洞，拉链与轮廓看起来完整；能否继续穿、清洁和功能仍由人确认。',source:'预置观察；“未见明显破损”不等于检查了所有隐藏部位。',hole:false,fill:{fabric:'unknown',basis:'unknown',width:'',height:'',panels:1,wearable:'yes',clean:true,cardboard:false}},
-  unknown:{title:'信息不足的衣物',image:'assets/AI_UNKNOWN.png',summary:'洗标内容不可读，面料成分、涂层、背面与可用尺寸均不明确。此处不猜材质或比例。',source:'预置观察；没有预填材料或尺寸。请展示“补资料”分支。',hole:false,fill:null}
+  textile: {
+   title: '重度破損舊外套',
+   image: 'assets/c-damaged-jacket.webp',
+   summary: '袖口、肩膀和前襟都有大面積破洞，這件外套已無法再穿。案例設定亦確認布面不足以用於現有二創模板。',
+   source: 'C 級回收情境。交收前由人員核對纖維、潔淨程度及紡織回收方的接收條件。',
+   destination: {
+    heading: 'C 級 · 材料回收',
+    preparation: '已無法重用或二創的衣物，可依物料種類核對對應的回收渠道。',
+    title: 'C 級去向：紡織原料回收',
+    text: '確認回收方接收這類織物及其狀態後，按對方要求交收。'
+   }
+  },
+  plastic: {
+   title: '粗粒硬塑膠碎片',
+   image: 'assets/coarse-plastic-flakes.webp',
+   summary: '破損硬塑膠收納盒經分揀後，可得到較大的碎片。這些碎片是有待加工的二創原材料。',
+   source: '原材料示意。實際使用前，由工作坊核對塑膠種類、潔淨程度與可加工條件。',
+   destination: {
+    heading: '原材料 · 硬塑膠粗碎片',
+    preparation: '先由工作坊確認碎片乾淨且材質相同，再判斷是否能加工成板材。',
+    title: '粗粒硬塑膠：板材加工參考',
+    text: '符合工作坊接收條件的同材質碎片，可作為板材的原料。中庭硬筆盒展示了板材裁製盒身與盒蓋的一種用途。',
+    product: 'C02'
+   }
+  }
  };
  let scene='jeans',observed=false,result=null,chosen=null;
  const labels={observation:'先查看预置观察',clean:'核对清洁状态',wearable:'确认能否继续原样使用',material:'补面料类别与信息依据',dimensions:'补连续可用布面长宽及片数'};
  function snapshot(){return {observed,fabric:el('ai-fabric').value,basis:el('ai-basis').value,width:el('ai-width').value,height:el('ai-height').value,panels:el('ai-panels').value,wearable:el('ai-wearable').value,clean:el('ai-clean').checked,cardboard:el('ai-cardboard').checked};}
  function clearReview(){el('ai-review').hidden=true;el('ai-review-message').textContent='';el('ai-review-form').reset();setUnavailable(el('ai-review-pass'),true,'请先勾选三项人工检查，再记录模拟通过。');}
  function invalidate(){result=null;chosen=null;clearReview();el('ai-template-grid').innerHTML='';el('ai-route-title').textContent='资料已修改，请重新匹配';el('ai-route-text').textContent='修改材料、尺寸或使用状态后，旧匹配与复核记录已清空。';el('ai-missing').innerHTML='';setUnavailable(el('ai-request-review'),true,'请先补资料并完成匹配，选择条件通过的候选；完好物品可按B类复核。');el('ai-request-info').hidden=true;el('ai-step-state').textContent=observed?'补充资料后查看分流与匹配':'先查看预置观察';}
- function setScene(id){scene=id;observed=false;el('ai-form').reset();el('ai-observation').hidden=true;el('ai-hole').hidden=true;el('ai-mark').checked=false;setUnavailable(el('ai-mark'),true,'先查看预置观察；只有旧裤子示例预置了破损标框。');el('ai-photo').src=scenarios[id].image;el('ai-photo').alt=`${scenarios[id].title}的AI情景图，非实际收集物`;el('ai-scene-title').textContent=scenarios[id].title;setUnavailable(el('ai-fill'),!scenarios[id].fill,'此情形没有可预填的信息；请手动补资料，不猜测材质或尺寸。');el('ai-fill-note').textContent='洗标与测量尚未补充；不会由照片推断精确尺寸。';document.querySelectorAll('[data-ai-scene]').forEach(b=>{const on=b.dataset.aiScene===id;b.classList.toggle('active',on);b.setAttribute('aria-pressed',on)});invalidate();el('ai-route-title').textContent='等待查看示例与补充资料';el('ai-route-text').textContent='当前为预置课堂情形；没有模型调用或图片上传。';}
+ function setScene(id){
+  scene = id;
+  observed = false;
+  const scenario = scenarios[id];
+  const destination = scenario.destination;
+  el('ai-form').reset();
+  el('ai-observation').hidden = true;
+  el('ai-hole').hidden = true;
+  el('ai-mark').checked = false;
+  setUnavailable(el('ai-mark'), true, '先查看預置觀察。破膝牛仔褲示例提供破損標框。');
+  el('ai-photo').src = scenario.image;
+  el('ai-photo').alt = scenario.title + '的預置示意圖';
+  el('ai-scene-title').textContent = scenario.title;
+  el('ai-fill-note').textContent = '洗標與測量尚待補充。';
+  el('ai-form').hidden = Boolean(destination);
+  el('ai-flow-guide').hidden = Boolean(destination);
+  el('ai-review-entry').hidden = Boolean(destination);
+  el('ai-photo-controls').hidden = Boolean(destination);
+  el('ai-material-route').hidden = !destination;
+  el('ai-show-destination').disabled = true;
+  el('ai-material-product').hidden = true;
+  document.querySelectorAll('[data-ai-scene]').forEach(button => {
+   const active = button.dataset.aiScene === id;
+   button.classList.toggle('active', active);
+   button.setAttribute('aria-pressed', String(active));
+  });
+  invalidate();
+  el('ai-route-title').textContent = destination ? destination.heading : '等待查看示例与补充资料';
+  el('ai-route-text').textContent = destination ? destination.preparation : '当前为预置课堂情形；没有模型调用或图片上传。';
+  if (destination) {
+   el('ai-material-route-heading').textContent = destination.heading;
+   el('ai-material-route-detail').textContent = destination.preparation;
+  }
+ }
+
  function updateReviewButton(){const eligible=result&&(result.route==='B'||result.matches.some(t=>t.id===chosen&&t.fit));setUnavailable(el('ai-request-review'),!eligible,'请先匹配并选择条件通过的模板；未匹配时不能进入人工确认。');}
  function renderResult(){
   result=EcoAI.evaluate(snapshot());chosen=null;clearReview();el('ai-template-grid').innerHTML='';el('ai-missing').innerHTML='';
@@ -28,11 +86,28 @@
   observation.hidden=false;
   el('ai-observation-text').textContent=scenarios[scene].summary;
   el('ai-observation-source').textContent=scenarios[scene].source;
-  setUnavailable(el('ai-mark'),!scenarios[scene].hole,'此示例没有预置破损标框；不会凭空添加。');
-  el('ai-mark').checked=scenarios[scene].hole;
-  el('ai-hole').hidden=!scenarios[scene].hole;
-  invalidate();
+  const scenario = scenarios[scene];
+  if (scenario.destination) {
+   el('ai-show-destination').disabled = false;
+   el('ai-step-state').textContent = '查看物料去向';
+  } else {
+   setUnavailable(el('ai-mark'), !scenario.hole, '破膝牛仔褲示例提供破損標框。');
+   el('ai-mark').checked = scenario.hole;
+   el('ai-hole').hidden = !scenario.hole;
+   invalidate();
+  }
   observation.scrollIntoView({block:'nearest'});
+ });
+ el('ai-show-destination').addEventListener('click', () => {
+  const destination = scenarios[scene].destination;
+  if (!observed || !destination) return;
+  el('ai-route-title').textContent = destination.title;
+  el('ai-route-text').textContent = destination.text;
+  el('ai-step-state').textContent = '已顯示物料去向';
+  const productLink = el('ai-material-product');
+  productLink.hidden = !destination.product;
+  if (destination.product) productLink.href = '#product-' + destination.product;
+  el('ai-route-title').scrollIntoView({block:'start'});
  });
  el('ai-mark').addEventListener('change',()=>{el('ai-hole').hidden=!el('ai-mark').checked});
  el('ai-fill').addEventListener('click',()=>{const p=scenarios[scene].fill;if(!p)return;for(const id of ['fabric','basis','width','height','panels','wearable'])el('ai-'+id).value=p[id];for(const id of ['clean','cardboard'])el('ai-'+id).checked=p[id];el('ai-fill-note').textContent=scene==='jeans'?'预置补充：人工按牛仔类登记；两片连续可用布面各25×18cm。不是本图AI测量，也不是实物核验。':'预置补充：模拟确认清洁且功能完整、可继续穿；不需要凭外观猜纤维比例。';invalidate();});
